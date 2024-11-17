@@ -1,0 +1,38 @@
+[
+    {
+      "title": "HTML",
+      "imageSrc": "skills/html.png"
+    },
+    {
+      "title": "CSS",
+      "imageSrc": "skills/css.png"
+    },
+    {
+      "title": "JavaScript",
+      "imageSrc": "skills/js.png"
+    },
+    {
+      "title": "React",
+      "imageSrc": "skills/react.png"
+    },
+    {
+      "title": "Java",
+      "imageSrc": "skills/java.png"
+    },
+    {
+      "title":"Spring Boot",
+      "imageSrc":"skills/spring.png"
+    },
+    {
+      "title": "Rest Api",
+      "imageSrc": "skills/rest.svg"
+    },
+    {
+      "title": "MicroServices",
+      "imageSrc": "skills/micro.png"
+    },
+    {
+      "title": "SQL",
+      "imageSrc": "skills/sql.png"
+    }
+  ]
