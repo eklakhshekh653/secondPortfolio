@@ -10,8 +10,8 @@ const Home = () => {
       strings: [
         "Welcome to my profile",
         "My Name is Shekh Eklakh",
-        "I'm full stack developer",
-        "Backend Developer (Spring Boot)",
+        "I'm  Aspiring full stack developer",
+        "Backend in SpringBoot",
       ],
       typeSpeed: 50,
       backSpeed: 50,
