@@ -5,7 +5,7 @@
       "title": "Ecommerce Application",
       "imageSrc": "https://i.ytimg.com/vi/RLTbMG8pZ9c/hqdefault.jpg?sqp=-oaymwE2CNACELwBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAq4FigIMCAAQARhWIF4oZTAP&rs=AOn4CLDMEiC9rLiM7LUNZ0pc9ICUTWrP0A",
       "description": "This is a project made with complete Spring Boot and React js.",
-      "demo": "https://youtu.be/RLTbMG8pZ9c?si=coOek5aEn_O9FZ1o",
+      "demo": "https://res.cloudinary.com/djjm233nn/video/upload/v1741177036/j95ajdldx8wl4pqvx4ic.mp4",
       "source": "https://github.com/eklakhshekh653/EcommerceProject"
     },
     {
@@ -13,7 +13,7 @@
       "title": "Spring Boot Quiz App",
       "imageSrc": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8PBVNpZQ6V2MBhGmw9XgDg83dPgMlZq0A7Q&s",
       "description": "This is a project made with complete Spring Boot and React js.",
-      "demo": "https://youtu.be/3TO2fKySAbI?si=R_hCCaHQlMIlNVHy",
+      "demo": "http://res.cloudinary.com/djjm233nn/video/upload/v1744529704/xheqdfsr3omsuvd8wdok.mp4",
       "source": "https://github.com/eklakhshekh653/quiz-tests"
     },
     {
@@ -21,15 +21,31 @@
       "title": "Hostel Management",
       "imageSrc": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDAhu5wstuawKyOpXr4KTRHKXksojEnCuHi5nHeDtxE3ij1ComEYT8mvl4OBb9J1hpQjM&usqp=CAU",
       "description": "This is a project made with complete Spring Boot and React js.",
-      "demo": "https://youtu.be/opdWBJgx71Y?si=58PU4AQy1CrUDt7G",
+      "demo": "http://res.cloudinary.com/djjm233nn/video/upload/v1744529930/juisnm1xqv0nncqq9qkn.mp4 ",
       "source": "https://github.com/eklakhshekh653/HostelManagementBackend"
     },
     {
       "key": 4,
       "title": "Video Streming App",
-      "imageSrc": "https://play-lh.googleusercontent.com/wVLza7IbkhmSlkPp8ekRlJMBAlx9lBm-b1clupRAAMAtGtKd25rWIhVAuEIoDzlZTG52=w526-h296-rw",
+      "imageSrc": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkRTW3pfIlyLSetrRsISYbGfYALUfGfs-OPw&s",
       "description": "Project made with complete React js And backend Fetch from online api.",
       "demo": "https://video-streaming-three.vercel.app/",
       "source": "https://github.com/eklakhshekh653/Video-Streaming"
+    },
+    {
+      "key": 5,
+      "title": "Real Time Social Media Application",
+      "imageSrc": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI7FuI3MSGFs5s6Wd-H7829ut_Wp1kDR89rA&s",
+      "description": "This is a project made with complete Spring Boot and React js.",
+      "demo": "http://res.cloudinary.com/djjm233nn/video/upload/v1744532293/mzfujfeq0ayu2iutm1ww.mp4",
+      "source": "https://github.com/eklakhshekh653/Social-media"
+    },
+    {
+      "key": 6,
+      "title": "Online Streaming Real Time App",
+      "imageSrc": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1Lz2mDyqtQC5MsTcOkmi39qELkJ8b2sREOg&s",
+      "description": "Project made with complete React js And backend from Spring Boot.",
+      "demo": "http://res.cloudinary.com/djjm233nn/video/upload/v1744531965/u7edi9ngkbus7ctt0kn7.mp4 ",
+      "source": "https://github.com/eklakhshekh653/Ott"
     }
   ]

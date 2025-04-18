@@ -1,38 +1,42 @@
 [
     {
       "title": "HTML",
-      "imageSrc": "skills/html.png"
+      "imageSrc": "skills/html.png",
+      "percent": 80
     },
     {
       "title": "CSS",
-      "imageSrc": "skills/css.png"
+      "imageSrc": "skills/css.png",
+      "percent": 80
     },
     {
       "title": "JavaScript",
-      "imageSrc": "skills/js.png"
+      "imageSrc": "skills/js.png",
+      "percent": 70
     },
     {
       "title": "React",
-      "imageSrc": "skills/react.png"
+      "imageSrc": "skills/react.png",
+      "percent": 80
     },
     {
       "title": "Java",
-      "imageSrc": "skills/java.png"
+      "imageSrc": "skills/java.png",
+      "percent": 80
     },
     {
       "title":"Spring Boot",
-      "imageSrc":"skills/spring.png"
+      "imageSrc":"skills/spring.png",
+      "percent": 80
     },
     {
       "title": "Rest Api",
-      "imageSrc": "skills/rest.svg"
-    },
-    {
-      "title": "MicroServices",
-      "imageSrc": "skills/micro.png"
+      "imageSrc": "skills/rest.svg",
+      "percent": 70
     },
     {
       "title": "SQL",
-      "imageSrc": "skills/sql.png"
+      "imageSrc": "skills/sql.png",
+      "percent": 60
     }
   ]
