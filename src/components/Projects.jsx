@@ -99,7 +99,7 @@ const Projects = () => {
             title="Project Demo"
             style={{ width: "80%", height: "80%" }}
             allowFullScreen
-            controll
+            controls
           ></video>
         </div>
       )}
