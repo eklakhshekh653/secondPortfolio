@@ -94,12 +94,12 @@ const Projects = () => {
           >
             ✖
           </button>
-          <iframe
+          <video
             src={videoUrl}
             title="Project Demo"
             style={{ width: "80%", height: "80%" }}
             allowFullScreen
-          ></iframe>
+          ></video>
         </div>
       )}
     </>
