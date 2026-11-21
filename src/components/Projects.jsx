@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, Github, PlayCircle, X, Layers, Globe, Code2 } from "lucide-react";
+import { Github, PlayCircle, X, Layers, Globe } from "lucide-react";
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState("All");
@@ -9,7 +9,6 @@ const Projects = () => {
   const categories = ["All", "AodInfoSolution Live", "Client Web Apps", "Full Stack & GitHub"];
 
   const allProjects = [
-    // --- AODINFOSOLUTION ENTERPRISE PROJECTS ---
     {
       id: 1,
       title: "AodInfoSolution Agency Portal",
@@ -73,8 +72,6 @@ const Projects = () => {
       tags: ["React", "React Native", "Node.js", "MongoDB"],
       liveUrl: "https://luxurycarnoida.com",
     },
-
-    // --- NEW VERCEL CLIENT / WEB PROJECTS ---
     {
       id: 8,
       title: "Raj Interiors — Design & Guides",
@@ -102,8 +99,6 @@ const Projects = () => {
       tags: ["React.js", "JavaScript", "Tailwind CSS", "Vercel"],
       liveUrl: "https://solution-bp8y.vercel.app/",
     },
-
-    // --- ORIGINAL PERSONAL / GITHUB PROJECTS ---
     {
       id: 11,
       title: "Ecommerce Application",
@@ -172,30 +167,38 @@ const Projects = () => {
       : allProjects.filter((p) => p.category === activeFilter);
 
   return (
-    <section id="projects" className="py-20 bg-[#0a0f1c] border-t border-white/10 relative">
-      <div className="max-w-7xl mx-auto px-5 lg:px-10">
+    <section
+      id="projects"
+      className="py-12 sm:py-20 bg-gradient-to-b from-[#030712] via-[#09152b] to-[#030712] border-t border-white/10 relative"
+    >
+      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-10">
         {/* Heading */}
-        <div className="text-center max-w-3xl mx-auto mb-10">
-          <span className="text-cyan-400 font-black text-xs uppercase tracking-widest flex items-center justify-center gap-2">
-            <Layers size={14} /> Proof of Work
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center max-w-3xl mx-auto mb-8 px-2"
+        >
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-black text-[11px] uppercase tracking-widest">
+            <Layers size={13} /> Proof of Work
           </span>
-          <h2 className="text-3xl sm:text-5xl font-black text-white mt-2 tracking-tight">
+          <h2 className="text-3xl sm:text-5xl font-black text-white mt-3 tracking-tight">
             16+ Production &{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+            <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
               Full Stack Projects.
             </span>
           </h2>
-        </div>
+        </motion.div>
 
-        {/* Filter Chips */}
-        <div className="flex flex-wrap justify-center gap-2.5 sm:gap-3 mb-12">
+        {/* Horizontal Scrollable Filter Chips on Mobile */}
+        <div className="flex overflow-x-auto sm:flex-wrap sm:justify-center gap-2 pb-3 mb-6 sm:mb-10 px-1 hide-scrollbar">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveFilter(cat)}
-              className={`px-4 sm:px-6 py-2.5 rounded-full font-black text-xs uppercase tracking-widest transition-all border ${
+              className={`whitespace-nowrap px-4 py-2 rounded-xl font-black text-[11px] sm:text-xs uppercase tracking-widest transition-all border shrink-0 ${
                 activeFilter === cat
-                  ? "bg-cyan-500 text-[#030712] border-cyan-400 shadow-lg shadow-cyan-500/25 scale-105"
+                  ? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white border-cyan-400 shadow-lg shadow-cyan-500/25"
                   : "bg-white/5 text-slate-400 border-white/10 hover:text-white hover:bg-white/10"
               }`}
             >
@@ -205,20 +208,20 @@ const Projects = () => {
         </div>
 
         {/* Projects Grid */}
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 lg:gap-8">
           <AnimatePresence mode="popLayout">
             {filtered.map((item) => (
               <motion.div
                 layout
                 key={item.id}
-                initial={{ opacity: 0, scale: 0.95 }}
+                initial={{ opacity: 0, scale: 0.94 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
+                exit={{ opacity: 0, scale: 0.94 }}
                 transition={{ duration: 0.35 }}
-                className="group flex flex-col bg-[#030712] border border-white/10 hover:border-cyan-500/40 rounded-2xl overflow-hidden shadow-xl transition-all"
+                whileHover={{ y: -5 }}
+                className="group flex flex-col bg-gradient-to-b from-[#0d1629] to-[#050b14] border border-white/10 hover:border-cyan-500/50 rounded-2xl overflow-hidden shadow-xl transition-all"
               >
-                {/* Project Image */}
-                <div className="relative h-48 overflow-hidden border-b border-white/10">
+                <div className="relative h-44 sm:h-48 overflow-hidden border-b border-white/10">
                   <img
                     src={item.imageSrc}
                     alt={item.title}
@@ -231,29 +234,26 @@ const Projects = () => {
                   </div>
                 </div>
 
-                {/* Body */}
-                <div className="p-5 flex flex-col flex-grow">
-                  <h3 className="text-lg font-black text-white mb-2 group-hover:text-cyan-400 transition-colors">
+                <div className="p-4 sm:p-5 flex flex-col flex-grow">
+                  <h3 className="text-base sm:text-lg font-black text-white mb-1.5 group-hover:text-cyan-400 transition-colors">
                     {item.title}
                   </h3>
                   <p className="text-xs sm:text-sm text-slate-400 leading-relaxed mb-4 flex-grow">
                     {item.description}
                   </p>
 
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-1.5 mb-5">
+                  <div className="flex flex-wrap gap-1.5 mb-4">
                     {item.tags.map((tag, tIdx) => (
                       <span
                         key={tIdx}
-                        className="px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-[10px] font-bold text-slate-300 uppercase"
+                        className="px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-[10px] font-bold text-slate-300 uppercase"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
 
-                  {/* Action Buttons */}
-                  <div className="flex items-center gap-2.5 pt-4 border-t border-white/10 mt-auto">
+                  <div className="flex items-center gap-2 pt-3 border-t border-white/10 mt-auto">
                     {item.liveUrl && (
                       <a
                         href={item.liveUrl}
@@ -292,18 +292,18 @@ const Projects = () => {
         </motion.div>
       </div>
 
-      {/* Video Demo Modal (High Z-Index so Navbar never hides Close Button) */}
+      {/* Video Demo Modal */}
       <AnimatePresence>
         {videoUrl && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[9999] bg-black/90 backdrop-blur-md flex items-center justify-center p-4"
+            className="fixed inset-0 z-[9999] bg-black/90 backdrop-blur-md flex items-center justify-center p-3"
           >
             <button
               onClick={() => setVideoUrl(null)}
-              className="absolute top-5 right-5 z-[10000] p-3 rounded-full bg-rose-600 text-white hover:bg-rose-500 shadow-2xl transition"
+              className="absolute top-4 right-4 z-[10000] p-3 rounded-full bg-rose-600 text-white hover:bg-rose-500 shadow-2xl transition"
             >
               <X size={22} />
             </button>
