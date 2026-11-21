@@ -1,109 +1,322 @@
 import React, { useState } from "react";
-import project from "./data/projects.json";
+import { motion, AnimatePresence } from "framer-motion";
+import { ExternalLink, Github, PlayCircle, X, Layers, Globe, Code2 } from "lucide-react";
 
 const Projects = () => {
+  const [activeFilter, setActiveFilter] = useState("All");
   const [videoUrl, setVideoUrl] = useState(null);
 
-  const openVideo = (url) => {
-    setVideoUrl(url);
-  };
+  const categories = ["All", "AodInfoSolution Live", "Client Web Apps", "Full Stack & GitHub"];
 
-  const closeVideo = () => {
-    setVideoUrl(null);
-  };
+  const allProjects = [
+    // --- AODINFOSOLUTION ENTERPRISE PROJECTS ---
+    {
+      id: 1,
+      title: "AodInfoSolution Agency Portal",
+      category: "AodInfoSolution Live",
+      description: "My tech startup's official platform showcasing enterprise web, mobile app, and AI biometric services.",
+      imageSrc: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80",
+      tags: ["React.js", "Tailwind CSS", "Framer Motion", "SEO"],
+      liveUrl: "https://aodinfosolution.co.in",
+    },
+    {
+      id: 2,
+      title: "St. Stephen's Academy ERP & App",
+      category: "AodInfoSolution Live",
+      description: "Full-stack School ERP managing academic administration, fee processing, and result generation with native mobile app.",
+      imageSrc: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80",
+      tags: ["Java", "Spring Boot", "React", "SQL"],
+      liveUrl: "https://ststephensbettiah.com",
+    },
+    {
+      id: 3,
+      title: "Hotel Kashi Nagri Booking Engine",
+      category: "AodInfoSolution Live",
+      description: "Direct hotel room booking platform with Admin/Staff/Guest ERP dashboard, Cloudinary images & Supabase backend.",
+      imageSrc: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80",
+      tags: ["React.js", "Supabase", "Tailwind CSS", "ERP"],
+      liveUrl: "https://www.hotelkashinagri.in",
+    },
+    {
+      id: 4,
+      title: "Care Public School ERP & App",
+      category: "AodInfoSolution Live",
+      description: "Centralized School ERP for fee tracking, attendance, and academic record updates paired with mobile app.",
+      imageSrc: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80",
+      tags: ["Spring Boot", "Spring Data JPA", "React", "MySQL"],
+      liveUrl: "https://www.carepublicschool.co.in",
+    },
+    {
+      id: 5,
+      title: "Jawahar Vidya Niketan Portal",
+      category: "AodInfoSolution Live",
+      description: "Cross-platform school management portal and parent communication ecosystem.",
+      imageSrc: "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&q=80",
+      tags: ["Java", "React Native", "Tailwind CSS", "SQL"],
+      liveUrl: "https://jawaharvidyaniketan.co.in",
+    },
+    {
+      id: 6,
+      title: "Delight Public High School",
+      category: "AodInfoSolution Live",
+      description: "High-performance SEO-optimized school web portal synchronized with student management system.",
+      imageSrc: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&q=80",
+      tags: ["React.js", "Java", "SEO", "Mobile App"],
+      liveUrl: "https://delightpublichighschool.co.in",
+    },
+    {
+      id: 7,
+      title: "Luxury Car Noida",
+      category: "AodInfoSolution Live",
+      description: "Premium luxury car rental booking platform and fleet showcase built for high-ticket clients.",
+      imageSrc: "https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?auto=format&fit=crop&q=80",
+      tags: ["React", "React Native", "Node.js", "MongoDB"],
+      liveUrl: "https://luxurycarnoida.com",
+    },
+
+    // --- NEW VERCEL CLIENT / WEB PROJECTS ---
+    {
+      id: 8,
+      title: "Raj Interiors — Design & Guides",
+      category: "Client Web Apps",
+      description: "Modern interior design showcase & home interior guides platform with sleek responsive UI.",
+      imageSrc: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80",
+      tags: ["React.js", "Tailwind CSS", "Vercel", "UI/UX"],
+      liveUrl: "https://raj-interiors.vercel.app/guides/home-interior-design-ideas",
+    },
+    {
+      id: 9,
+      title: "Welding & Fabrication Solutions",
+      category: "Client Web Apps",
+      description: "Industrial welding & metal fabrication business website with service showcase and lead capture.",
+      imageSrc: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&q=80",
+      tags: ["React.js", "Tailwind CSS", "Responsive", "Vercel"],
+      liveUrl: "https://welding-three.vercel.app/",
+    },
+    {
+      id: 10,
+      title: "Enterprise Solution Web App",
+      category: "Client Web Apps",
+      description: "Modern corporate & digital solutions web application engineered for fast load speeds.",
+      imageSrc: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80",
+      tags: ["React.js", "JavaScript", "Tailwind CSS", "Vercel"],
+      liveUrl: "https://solution-bp8y.vercel.app/",
+    },
+
+    // --- ORIGINAL PERSONAL / GITHUB PROJECTS ---
+    {
+      id: 11,
+      title: "Ecommerce Application",
+      category: "Full Stack & GitHub",
+      description: "Complete full-stack E-Commerce platform built with Java Spring Boot backend and React.js frontend.",
+      imageSrc: "https://i.ytimg.com/vi/RLTbMG8pZ9c/hqdefault.jpg",
+      tags: ["Spring Boot", "React.js", "MySQL", "REST API"],
+      demoVideo: "https://res.cloudinary.com/djjm233nn/video/upload/v1741177036/j95ajdldx8wl4pqvx4ic.mp4",
+      source: "https://github.com/eklakhshekh653/EcommerceProject",
+    },
+    {
+      id: 12,
+      title: "Spring Boot Quiz App",
+      category: "Full Stack & GitHub",
+      description: "Interactive quiz and assessment application powered by Spring Boot APIs and React.js.",
+      imageSrc: "https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?auto=format&fit=crop&q=80",
+      tags: ["Spring Boot", "React.js", "Java"],
+      demoVideo: "https://res.cloudinary.com/djjm233nn/video/upload/v1744529704/xheqdfsr3omsuvd8wdok.mp4",
+      source: "https://github.com/eklakhshekh653/quiz-tests",
+    },
+    {
+      id: 13,
+      title: "Hostel Management System",
+      category: "Full Stack & GitHub",
+      description: "Complete hostel room allocation, student records, and management system in Spring Boot & React.",
+      imageSrc: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&q=80",
+      tags: ["Spring Boot", "React.js", "SQL"],
+      demoVideo: "https://res.cloudinary.com/djjm233nn/video/upload/v1744529930/juisnm1xqv0nncqq9qkn.mp4",
+      source: "https://github.com/eklakhshekh653/HostelManagementBackend",
+    },
+    {
+      id: 14,
+      title: "Video Streaming App",
+      category: "Full Stack & GitHub",
+      description: "Dynamic video streaming web application built with React.js integrating real-time online APIs.",
+      imageSrc: "https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&q=80",
+      tags: ["React.js", "REST API", "Vercel"],
+      liveUrl: "https://video-streaming-three.vercel.app/",
+      source: "https://github.com/eklakhshekh653/Video-Streaming",
+    },
+    {
+      id: 15,
+      title: "Real Time Social Media App",
+      category: "Full Stack & GitHub",
+      description: "Full-stack social media platform with posts, interactions, and Spring Boot backend.",
+      imageSrc: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80",
+      tags: ["Spring Boot", "React.js", "MySQL"],
+      demoVideo: "https://res.cloudinary.com/djjm233nn/video/upload/v1744532293/mzfujfeq0ayu2iutm1ww.mp4",
+      source: "https://github.com/eklakhshekh653/Social-media",
+    },
+    {
+      id: 16,
+      title: "Online Streaming Real Time OTT",
+      category: "Full Stack & GitHub",
+      description: "OTT media streaming application built with React.js frontend and Spring Boot backend.",
+      imageSrc: "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?auto=format&fit=crop&q=80",
+      tags: ["Spring Boot", "React.js", "Streaming"],
+      demoVideo: "https://res.cloudinary.com/djjm233nn/video/upload/v1744531965/u7edi9ngkbus7ctt0kn7.mp4",
+      source: "https://github.com/eklakhshekh653/Ott",
+    },
+  ];
+
+  const filtered =
+    activeFilter === "All"
+      ? allProjects
+      : allProjects.filter((p) => p.category === activeFilter);
 
   return (
-    <>
-      <div className="container projects my-3" id="projects">
-        <h1>PROJECTS</h1>
-        <div className="row d-flex justify-content-center align-content-center">
-          {project.map((data) => (
-            <div key={data.key} className="my-4 col-sm-6 col-md-4 col-lg-3 mx-4">
-              <div
-                className="card bg-dark text-light"
-                style={{
-                  width: "18rem",
-                  border: "1px solid yellow",
-                  boxShadow: "5px 5px 10px 10px rgba(101, 175, 10, 0.5)",
-                }}
-                data-aos="flip-right"
-                data-aos-duration="1000"
-              >
-                <div className="img d-flex justify-content-center align-content-center p-3">
-                  <img
-                    src={data.imageSrc}
-                    className="card-img-top"
-                    alt="..."
-                    style={{
-                      width: "250px",
-                      height: "200px",
-                      border: "2px solid yellow",
-                      borderRadius: "10px",
-                    }}
-                  />
-                </div>
-                <div className="card-body text-center">
-                  <h5 className="card-title">{data.title}</h5>
-                  <p className="card-text">{data.description}</p>
-                  <button
-                    className="btn btn-primary mx-3"
-                    onClick={() => openVideo(data.demo)}
-                  >
-                    Demo
-                  </button>
-                  <a href={data.source} className="btn btn-warning">
-                    Code
-                  </a>
-                </div>
-              </div>
-            </div>
+    <section id="projects" className="py-20 bg-[#0a0f1c] border-t border-white/10 relative">
+      <div className="max-w-7xl mx-auto px-5 lg:px-10">
+        {/* Heading */}
+        <div className="text-center max-w-3xl mx-auto mb-10">
+          <span className="text-cyan-400 font-black text-xs uppercase tracking-widest flex items-center justify-center gap-2">
+            <Layers size={14} /> Proof of Work
+          </span>
+          <h2 className="text-3xl sm:text-5xl font-black text-white mt-2 tracking-tight">
+            16+ Production &{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+              Full Stack Projects.
+            </span>
+          </h2>
+        </div>
+
+        {/* Filter Chips */}
+        <div className="flex flex-wrap justify-center gap-2.5 sm:gap-3 mb-12">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setActiveFilter(cat)}
+              className={`px-4 sm:px-6 py-2.5 rounded-full font-black text-xs uppercase tracking-widest transition-all border ${
+                activeFilter === cat
+                  ? "bg-cyan-500 text-[#030712] border-cyan-400 shadow-lg shadow-cyan-500/25 scale-105"
+                  : "bg-white/5 text-slate-400 border-white/10 hover:text-white hover:bg-white/10"
+              }`}
+            >
+              {cat}
+            </button>
           ))}
         </div>
+
+        {/* Projects Grid */}
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <AnimatePresence mode="popLayout">
+            {filtered.map((item) => (
+              <motion.div
+                layout
+                key={item.id}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.35 }}
+                className="group flex flex-col bg-[#030712] border border-white/10 hover:border-cyan-500/40 rounded-2xl overflow-hidden shadow-xl transition-all"
+              >
+                {/* Project Image */}
+                <div className="relative h-48 overflow-hidden border-b border-white/10">
+                  <img
+                    src={item.imageSrc}
+                    alt={item.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute top-3 left-3">
+                    <span className="px-2.5 py-1 rounded-md bg-black/80 backdrop-blur-md text-cyan-400 text-[10px] font-black uppercase tracking-wider border border-white/10">
+                      {item.category}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Body */}
+                <div className="p-5 flex flex-col flex-grow">
+                  <h3 className="text-lg font-black text-white mb-2 group-hover:text-cyan-400 transition-colors">
+                    {item.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-400 leading-relaxed mb-4 flex-grow">
+                    {item.description}
+                  </p>
+
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-1.5 mb-5">
+                    {item.tags.map((tag, tIdx) => (
+                      <span
+                        key={tIdx}
+                        className="px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-[10px] font-bold text-slate-300 uppercase"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="flex items-center gap-2.5 pt-4 border-t border-white/10 mt-auto">
+                    {item.liveUrl && (
+                      <a
+                        href={item.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 py-2.5 px-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-black text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 hover:opacity-90 transition"
+                      >
+                        <Globe size={14} /> Live Site
+                      </a>
+                    )}
+
+                    {item.demoVideo && (
+                      <button
+                        onClick={() => setVideoUrl(item.demoVideo)}
+                        className="flex-1 py-2.5 px-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-black text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 hover:opacity-90 transition"
+                      >
+                        <PlayCircle size={14} /> Watch Demo
+                      </button>
+                    )}
+
+                    {item.source && (
+                      <a
+                        href={item.source}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="py-2.5 px-4 rounded-xl bg-white/5 hover:bg-white/15 border border-white/15 text-white font-black text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 transition"
+                      >
+                        <Github size={14} /> Code
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
       </div>
 
-      {videoUrl && (
-        <div
-          className="fullscreen-video"
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            backgroundColor: "rgba(0, 0, 0, 0.9)",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            zIndex: 1000,
-          }}
-        >
-          <button
-            onClick={closeVideo}
-            style={{
-              position: "absolute",
-              top: "20px",
-              right: "20px",
-              background: "red",
-              color: "white",
-              border: "none",
-              padding: "10px 15px",
-              cursor: "pointer",
-              fontSize: "20px",
-              borderRadius: "5px",
-            }}
+      {/* Video Demo Modal (High Z-Index so Navbar never hides Close Button) */}
+      <AnimatePresence>
+        {videoUrl && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[9999] bg-black/90 backdrop-blur-md flex items-center justify-center p-4"
           >
-            ✖
-          </button>
-          <video
-            src={videoUrl}
-            title="Project Demo"
-            style={{ width: "80%", height: "80%" }}
-            allowFullScreen
-            controls
-          ></video>
-        </div>
-      )}
-    </>
+            <button
+              onClick={() => setVideoUrl(null)}
+              className="absolute top-5 right-5 z-[10000] p-3 rounded-full bg-rose-600 text-white hover:bg-rose-500 shadow-2xl transition"
+            >
+              <X size={22} />
+            </button>
+            <video
+              src={videoUrl}
+              controls
+              autoPlay
+              className="w-full max-w-4xl max-h-[80vh] rounded-2xl border border-white/20 shadow-2xl bg-black"
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </section>
   );
 };
 
