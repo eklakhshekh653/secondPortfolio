@@ -1,30 +1,22 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
+import AboutAndStartup from "./components/AboutAndStartup";
 import Skills from "./components/Skills";
 import Projects from "./components/Projects";
-import Contact from './components/Contact'
-import Aos from "aos";
-import "aos/dist/aos.css"
+import Contact from "./components/Contact";
 
-
-const App = () => {
- useEffect(() => {
-  Aos.init();
-  
- }, [])
- 
+export default function App() {
   return (
-    <>
+    <div className="bg-[#030712] text-white min-h-screen font-sans selection:bg-cyan-500/30 selection:text-white scroll-smooth">
       <Navbar />
-      <div className="container">
+      <main>
         <Home />
+        <AboutAndStartup />
         <Skills />
         <Projects />
         <Contact />
-      </div>
-    </>
+      </main>
+    </div>
   );
-};
-
-export default App;
+}
