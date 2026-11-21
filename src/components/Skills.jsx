@@ -6,9 +6,10 @@ const Skills = () => {
   const skillCategories = [
     {
       title: "Backend & Architecture",
-      icon: <Server size={24} className="text-emerald-400" />,
-      color: "from-emerald-500 to-teal-500",
-      border: "hover:border-emerald-500/40",
+      icon: <Server size={22} className="text-emerald-400" />,
+      color: "from-emerald-400 to-teal-500",
+      cardBg: "from-[#071f1a] to-[#050b14]",
+      border: "border-emerald-500/25 hover:border-emerald-400/60",
       skills: [
         { name: "Java", level: 90 },
         { name: "Spring Boot & Spring Security", level: 88 },
@@ -19,9 +20,10 @@ const Skills = () => {
     },
     {
       title: "Frontend & Mobile Apps",
-      icon: <Layout size={24} className="text-cyan-400" />,
-      color: "from-cyan-500 to-blue-500",
-      border: "hover:border-cyan-500/40",
+      icon: <Layout size={22} className="text-cyan-400" />,
+      color: "from-cyan-400 to-blue-500",
+      cardBg: "from-[#081a2e] to-[#050b14]",
+      border: "border-cyan-500/25 hover:border-cyan-400/60",
       skills: [
         { name: "React.js", level: 90 },
         { name: "React Native (Expo)", level: 85 },
@@ -32,9 +34,10 @@ const Skills = () => {
     },
     {
       title: "Data Analytics & BI",
-      icon: <BarChart3 size={24} className="text-amber-400" />,
-      color: "from-amber-500 to-orange-500",
-      border: "hover:border-amber-500/40",
+      icon: <BarChart3 size={22} className="text-amber-400" />,
+      color: "from-amber-400 to-orange-500",
+      cardBg: "from-[#211508] to-[#050b14]",
+      border: "border-amber-500/25 hover:border-amber-400/60",
       skills: [
         { name: "Python (Data Analysis)", level: 85 },
         { name: "NumPy & Pandas", level: 85 },
@@ -45,9 +48,10 @@ const Skills = () => {
     },
     {
       title: "Databases, Cloud & Tools",
-      icon: <Database size={24} className="text-purple-400" />,
-      color: "from-purple-500 to-pink-500",
-      border: "hover:border-purple-500/40",
+      icon: <Database size={22} className="text-fuchsia-400" />,
+      color: "from-fuchsia-400 to-purple-500",
+      cardBg: "from-[#1c0c2b] to-[#050b14]",
+      border: "border-fuchsia-500/25 hover:border-fuchsia-400/60",
       skills: [
         { name: "MySQL & PostgreSQL", level: 88 },
         { name: "Redis Cache", level: 78 },
@@ -59,24 +63,32 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="py-20 bg-[#030712] relative">
-      <div className="max-w-7xl mx-auto px-5 lg:px-10">
-        <div className="text-center max-w-3xl mx-auto mb-14">
-          <span className="text-cyan-400 font-black text-xs uppercase tracking-widest">
+    <section
+      id="skills"
+      className="py-12 sm:py-20 bg-gradient-to-b from-[#030712] via-[#0d0a1f] to-[#030712] relative overflow-hidden"
+    >
+      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-10 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center max-w-3xl mx-auto mb-8 sm:mb-14 px-2"
+        >
+          <span className="inline-block px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 font-black text-[11px] uppercase tracking-widest">
             Technical Arsenal
           </span>
-          <h2 className="text-3xl sm:text-5xl font-black text-white mt-2 tracking-tight">
+          <h2 className="text-3xl sm:text-5xl font-black text-white mt-3 tracking-tight">
             Full Stack Engineering +{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500">
+            <span className="bg-gradient-to-r from-amber-400 via-orange-400 to-rose-500 bg-clip-text text-transparent">
               Data Analytics.
             </span>
           </h2>
-          <p className="text-sm sm:text-base text-slate-400 mt-3 font-medium">
-            A rare hybrid skillset combining enterprise software development with business intelligence.
+          <p className="text-xs sm:text-base text-slate-400 mt-2 font-medium">
+            Enterprise software development combined with business intelligence.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-6 lg:gap-8">
           {skillCategories.map((cat, idx) => (
             <motion.div
               key={idx}
@@ -84,26 +96,27 @@ const Skills = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className={`p-6 sm:p-8 rounded-3xl bg-[#0a0f1c] border border-white/10 transition-colors shadow-xl ${cat.border}`}
+              whileHover={{ y: -4 }}
+              className={`p-4 sm:p-8 rounded-2xl sm:rounded-3xl bg-gradient-to-br ${cat.cardBg} border ${cat.border} transition-all shadow-xl`}
             >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="p-3 rounded-xl bg-white/5 border border-white/10">{cat.icon}</div>
-                <h3 className="text-xl font-black text-white">{cat.title}</h3>
+              <div className="flex items-center gap-3 mb-5">
+                <div className="p-2.5 rounded-xl bg-white/5 border border-white/10">{cat.icon}</div>
+                <h3 className="text-lg sm:text-xl font-black text-white">{cat.title}</h3>
               </div>
 
-              <div className="space-y-4">
+              <div className="space-y-3.5">
                 {cat.skills.map((skill, sIdx) => (
                   <div key={sIdx}>
                     <div className="flex justify-between text-xs sm:text-sm font-bold mb-1.5">
                       <span className="text-slate-200">{skill.name}</span>
-                      <span className="text-cyan-400">{skill.level}%</span>
+                      <span className="text-cyan-300">{skill.level}%</span>
                     </div>
-                    <div className="w-full h-2.5 bg-white/5 rounded-full overflow-hidden">
+                    <div className="w-full h-2.5 bg-white/5 rounded-full overflow-hidden border border-white/5">
                       <motion.div
                         initial={{ width: 0 }}
                         whileInView={{ width: `${skill.level}%` }}
                         viewport={{ once: true }}
-                        transition={{ duration: 1, delay: 0.1 * sIdx }}
+                        transition={{ duration: 1, delay: 0.08 * sIdx, ease: "easeOut" }}
                         className={`h-full rounded-full bg-gradient-to-r ${cat.color}`}
                       />
                     </div>
